@@ -5,14 +5,22 @@ const { Category, Product } = require('../../models');
 
 router.get('/', (req, res) => {
   // find all categories
-  
-  // TODO be sure to include its associated Products
+  Category.findAll({
+    where: {
+      product_name: req.body.product_name
+    }
+  })
+  // be sure to include its associated Products
 });
 
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
- 
-  // TODO be sure to include its associated Products
+  Category.findOne({
+    where: {
+      product_name: req.body.product_name
+    }
+  })
+  // be sure to include its associated Products
 });
 
 router.post('/', (req, res) => {
