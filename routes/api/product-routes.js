@@ -7,8 +7,11 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   // find all products
   Product.findAll({
-    category: req.body.category_name,
-    tag: req.body.id
+    where: ({
+      product: req.body.product_name,
+      category: req.body.category_name,
+      tag: req.body.tag_name
+    })
   })
     .then(dbProductData => res.json(dbProductData))
     .catch(err => {
@@ -23,7 +26,9 @@ router.get('/:id', (req, res) => {
   // find a single product by its `id`
   Product.findOne({
     where: {
-      id: req.params.id
+      product: req.body.product_name,
+      category: req.body.category_name,
+      tag: req.body.tag_name
     }
   })
     .then(dbProductData => {
@@ -55,7 +60,7 @@ router.post('/', (req, res) => {
       product_name: req.body.product_name,
       price: res.body.price,
       stock: res.body.stock,
-      category_id: res.body.category_id
+      tagIds: res.body.tag_id
     })
     .then(dbProductData => res.json(dbProductData))
     .catch(err => {
@@ -91,7 +96,10 @@ router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
-      id: req.params.id,
+      product_name: req.body.product_name,
+      price: res.body.price,
+      stock: res.body.stock,
+      tag: res.body.tag_name
     },
   })
     .then((product) => {

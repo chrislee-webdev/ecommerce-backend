@@ -5,8 +5,12 @@ const { Category, Product } = require('../../models');
 
 router.get('/', (req, res) => {
   // find all categories
-  Category.findAll()
-    .then(dbCategotyData => res.json(dbCategoryData))
+  Category.findAll({
+    where: {
+      category: req.params.category_name
+    }
+  })
+    .then(dbCategoryData => res.json(dbCategoryData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -39,7 +43,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new category, expects { categoryname }
   Category.create({
-    caegoryname: req.body.username
+    categoryname: req.body.category_name
   })
   .then(dbCategoryData => res.json(dbCategoryData))
   .catch(err => {
