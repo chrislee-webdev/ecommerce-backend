@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { UPSERT } = require('sequelize/types/lib/query-types');
 const apiRoutes = require('./api');
 
 router.use('/api', apiRoutes);
