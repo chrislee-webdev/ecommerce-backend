@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
       'product_name',
       'price',
       'stock',
-      'category'
+      'category_id'
     ]
   })
   .then(dbProductData => res.json(dbProductData))
@@ -44,7 +44,7 @@ router.get('/:id', (req, res) => {
       'product_name',
       'price',
       'stock',
-      'category'
+      'category_id'
     ]
   })
   .then(dbProductData => res.json(dbProductData))
