@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { UPSERT } = require('sequelize/types/lib/query-types');
 const categoryRoutes = require('./category-routes');
 const productRoutes = require('./product-routes');
 const tagRoutes = require('./tag-routes');
