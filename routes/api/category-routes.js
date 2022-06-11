@@ -54,7 +54,7 @@ router.put('/:id', (req, res) => {
   Category.update(req.body, {
     where: {
       id: req.params.id
-    }
+    },
   })
   .then(dbCategoryData => {
     if(!dbCategoryData[0]) {
