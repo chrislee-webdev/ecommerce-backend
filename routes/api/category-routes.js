@@ -24,9 +24,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find one category by its `id` value
   Category.findOne({
+    where: {
+      id: req.params.id
+    },
     include: {
       model: Product,
-  
     }
   })
   .then(dbCategoryData => res.json(dbCategoryData))
@@ -54,7 +56,7 @@ router.put('/:id', (req, res) => {
   Category.update(req.body, {
     where: {
       id: req.params.id
-    },
+    }
   })
   .then(dbCategoryData => {
     if(!dbCategoryData[0]) {
